@@ -1,91 +1,104 @@
 <script lang="ts" setup>
-  import type { UIConfig, LogoConfig } from '@/controller/landingController'
-  import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { useDisplay } from 'vuetify'
-  import { useTheme } from '@/composables/useTheme'
-  import { useAuthUserStore } from '@/stores/authUser'
-  import SlugName from './SlugName.vue'
-  import { navigationConfig, type NavigationGroup, type NavigationItem } from '@/utils/navigation'
+import type { UIConfig, LogoConfig } from "@/controller/landingController";
+import { computed, ref, onMounted, onUnmounted, watch } from "vue";
+import { useRouter } from "vue-router";
+import { useDisplay } from "vuetify";
+import { useTheme } from "@/composables/useTheme";
+import { useAuthUserStore } from "@/stores/authUser";
+import SlugName from "./SlugName.vue";
+import {
+  navigationConfig,
+  type NavigationGroup,
+  type NavigationItem,
+} from "@/utils/navigation";
 
-  interface Props {
-    config?: UIConfig | null
-  }
+interface Props {
+  config?: UIConfig | null;
+}
 
-  const props = defineProps<Props>()
-  const router = useRouter()
-  const authStore = useAuthUserStore()
+const props = defineProps<Props>();
+const router = useRouter();
+const authStore = useAuthUserStore();
 
-  // Vuetify display composable for responsiveness
-  const { mobile, mdAndUp, lgAndUp, xs, sm, md } = useDisplay()
+// Vuetify display composable for responsiveness
+const { mobile, mdAndUp, lgAndUp, xs, sm, md } = useDisplay();
 
-  // Mobile drawer state
-  const drawer = ref(false)
-  const isScrolled = ref(false)
-  const lastScrollY = ref(0)
+// Mobile drawer state
+const drawer = ref(false);
+const isScrolled = ref(false);
+const lastScrollY = ref(0);
 
-  // Theme management
-  const { toggleTheme: handleToggleTheme, getCurrentTheme, isLoadingTheme } = useTheme()
+// Theme management
+const {
+  toggleTheme: handleToggleTheme,
+  getCurrentTheme,
+  isLoadingTheme,
+} = useTheme();
 
-  const navbarConfig = computed(() => props.config?.navbar)
+const navbarConfig = computed(() => props.config?.navbar);
 
-  // Theme toggle computed properties
-  const currentTheme = computed(() => getCurrentTheme())
-  const themeIcon = computed(() => {
-    return currentTheme.value === 'dark' ? 'mdi-white-balance-sunny' : 'mdi-weather-night'
-  })
-  const themeTooltip = computed(() => {
-    return `Switch to ${currentTheme.value === 'dark' ? 'light' : 'dark'} theme`
-  })
+// Theme toggle computed properties
+const currentTheme = computed(() => getCurrentTheme());
+const themeIcon = computed(() => {
+  return currentTheme.value === "dark"
+    ? "mdi-white-balance-sunny"
+    : "mdi-weather-night";
+});
+const themeTooltip = computed(() => {
+  return `Switch to ${currentTheme.value === "dark" ? "light" : "dark"} theme`;
+});
 
-  // Scroll handler for floating effect and auto-close drawer
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY
-    isScrolled.value = currentScrollY > 20
+// Scroll handler for floating effect and auto-close drawer
+const handleScroll = () => {
+  const currentScrollY = window.scrollY;
+  isScrolled.value = currentScrollY > 20;
 
-    // Auto-close drawer when scrolling down on mobile and tablets
-    if (!lgAndUp.value && drawer.value) {
-      if (currentScrollY > lastScrollY.value && currentScrollY > 100) {
-        drawer.value = false
-      }
+  // Auto-close drawer when scrolling down on mobile and tablets
+  if (!lgAndUp.value && drawer.value) {
+    if (currentScrollY > lastScrollY.value && currentScrollY > 100) {
+      drawer.value = false;
     }
-
-    lastScrollY.value = currentScrollY
   }
 
-  // Watch for drawer state changes and close on route change
-  watch(() => router.currentRoute.value, () => {
+  lastScrollY.value = currentScrollY;
+};
+
+// Watch for drawer state changes and close on route change
+watch(
+  () => router.currentRoute.value,
+  () => {
     if (drawer.value) {
-      drawer.value = false
-    }
-  })
-
-  // Close drawer when switching from mobile to desktop
-  watch(lgAndUp, (newLgAndUp, oldLgAndUp) => {
-    if (!oldLgAndUp && newLgAndUp && drawer.value) {
-      drawer.value = false
-    }
-  })
-
-  onMounted(() => {
-    window.addEventListener('scroll', handleScroll)
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll)
-  })
-
-  function toggleTheme () {
-    handleToggleTheme()
-  }
-
-  async function handleLogout () {
-    try {
-      await authStore.signOut()
-    } catch (error) {
-      console.error('Logout failed:', error)
+      drawer.value = false;
     }
   }
+);
+
+// Close drawer when switching from mobile to desktop
+watch(lgAndUp, (newLgAndUp, oldLgAndUp) => {
+  if (!oldLgAndUp && newLgAndUp && drawer.value) {
+    drawer.value = false;
+  }
+});
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+
+function toggleTheme() {
+  handleToggleTheme();
+}
+
+async function handleLogout() {
+  try {
+    await authStore.signOut();
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+}
 </script>
 
 <template>
@@ -98,14 +111,25 @@
       position="fixed"
       class="mx-auto px-2"
       :style="{
-        top: isScrolled ? (xs ? '4px' : '10px') : (xs ? '8px' : '20px'),
-        left: '50%',
-        transform: `translateX(-50%) ${isScrolled ? 'scale(0.98)' : 'scale(1)'}`,
-        width: isScrolled ? (xs ? '96%' : '90%') : (xs ? '98%' : '95%'),
-        maxWidth: '1200px',
-        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+        top: isScrolled ? (xs ? '4px' : '10px') : xs ? '8px' : '20px',
+        left: lgAndUp ? 'calc(50% + 140px)' : '50%',
+        transform: `translateX(-50%) ${
+          isScrolled ? 'scale(0.98)' : 'scale(1)'
+        }`,
+        width: isScrolled
+          ? xs
+            ? '96%'
+            : lgAndUp
+            ? '85%'
+            : '90%'
+          : xs
+          ? '98%'
+          : lgAndUp
+          ? '88%'
+          : '95%',
+        maxWidth: lgAndUp ? '900px' : '1200px',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       }"
-
     >
       <!-- Logo Section with Badge -->
       <template #prepend>
@@ -129,30 +153,16 @@
               >
                 <template #error>
                   <!-- Fallback to avatar with icon if image fails to load -->
-                  <v-avatar
-                    :color="navbarConfig.color"
-                    size="42"
-                  >
-                    <v-icon
-                      :icon="navbarConfig.icon"
-                      size="22"
-                      color="white"
-                    />
+                  <v-avatar :color="navbarConfig.color" size="42">
+                    <v-icon :icon="navbarConfig.icon" size="22" color="white" />
                   </v-avatar>
                 </template>
               </v-img>
             </template>
             <template v-else>
               <!-- Default avatar with icon when no logo is configured -->
-              <v-avatar
-                :color="navbarConfig.color"
-                size="42"
-              >
-                <v-icon
-                  :icon="navbarConfig.icon"
-                  size="22"
-                  color="white"
-                />
+              <v-avatar :color="navbarConfig.color" size="42">
+                <v-icon :icon="navbarConfig.icon" size="22" color="white" />
               </v-avatar>
             </template>
           </v-badge>
@@ -233,7 +243,13 @@
       :elevation="24"
       absolute
       class="pa-0"
-      style="position: fixed !important; z-index: 9999 !important; top: 0 !important; left: 0 !important; height: 100vh !important;"
+      style="
+        position: fixed !important;
+        z-index: 9999 !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100vh !important;
+      "
     >
       <!-- Drawer Header with Logo and Title -->
       <template #prepend>
@@ -258,10 +274,7 @@
                 >
                   <template #error>
                     <!-- Fallback to avatar with icon if image fails to load -->
-                    <v-avatar
-                      :color="navbarConfig.color"
-                      size="48"
-                    >
+                    <v-avatar :color="navbarConfig.color" size="48">
                       <v-icon
                         :icon="navbarConfig.icon"
                         size="24"
@@ -273,15 +286,8 @@
               </template>
               <template v-else>
                 <!-- Default avatar with icon when no logo is configured -->
-                <v-avatar
-                  :color="navbarConfig.color"
-                  size="48"
-                >
-                  <v-icon
-                    :icon="navbarConfig.icon"
-                    size="24"
-                    color="white"
-                  />
+                <v-avatar :color="navbarConfig.color" size="48">
+                  <v-icon :icon="navbarConfig.icon" size="24" color="white" />
                 </v-avatar>
               </template>
             </v-badge>
@@ -302,7 +308,7 @@
             variant="text"
             size="small"
             class="position-absolute"
-            style="top: 16px; right: 16px;"
+            style="top: 16px; right: 16px"
             @click="drawer = false"
           />
         </v-card>
@@ -347,7 +353,9 @@
               v-bind="activatorProps"
               :prepend-icon="themeIcon"
               title="Theme"
-              :subtitle="`Current: ${currentTheme === 'dark' ? 'Dark' : 'Light'} Mode`"
+              :subtitle="`Current: ${
+                currentTheme === 'dark' ? 'Dark' : 'Light'
+              } Mode`"
               rounded="xl"
               class="ma-2"
             />
@@ -379,7 +387,6 @@
         </div>
       </template>
     </v-navigation-drawer>
-
   </div>
 </template>
 

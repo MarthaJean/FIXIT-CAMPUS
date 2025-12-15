@@ -2,6 +2,7 @@
 import { useAuthUserStore } from "@/stores/authUser";
 import { useToast } from "vue-toastification";
 import InnerLayoutWrapper from "@/layouts/InnerLayoutWrapper.vue";
+import HomeWidget from "@/pages/home/HomeWidget.vue";
 
 const authStore = useAuthUserStore();
 const toast = useToast();
@@ -28,9 +29,11 @@ const handleLogout = async () => {
 <template>
   <InnerLayoutWrapper>
     <template #content>
-      <v-container fluid class="fill-height">
-        <v-row justify="center" align="center" class="fill-height">
-          <v-col cols="12" md="8" lg="6"> </v-col>
+      <v-container fluid class="py-8">
+        <v-row justify="center">
+          <v-col cols="12" md="10" lg="8">
+            <HomeWidget />
+          </v-col>
         </v-row>
       </v-container>
     </template>
