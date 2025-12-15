@@ -9,6 +9,7 @@ export interface Report {
   description: string;
   classroom_id: number;
   user_id: string;
+  image_url?: string;
 }
 
 export interface CreateReportPayload {
@@ -16,12 +17,14 @@ export interface CreateReportPayload {
   description: string;
   classroom_id: number;
   user_id?: string;
+  image_url?: string;
 }
 
 export interface UpdateReportPayload {
   title?: string;
   description?: string;
   classroom_id?: number;
+  image_url?: string;
 }
 
 export const useReportsStore = defineStore("reports", () => {
