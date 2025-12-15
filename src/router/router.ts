@@ -8,6 +8,7 @@ import NotFound from "@/pages/NotFound.vue";
 import ForbiddenView from "@/pages/ForbiddenView.vue";
 import AdminUserRolesView from "@/pages/admin/AdminUserRolesView.vue";
 import UserManagementView from "@/pages/admin/UserManagementView.vue";
+import ReportManagementView from "@/pages/ReportManagementView.vue";
 
 /**
  * Route definitions for the application
@@ -35,6 +36,11 @@ const routes = setupLayouts([
   {
     path: "/admin/user-management",
     component: UserManagementView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/admin/report-management",
+    component: ReportManagementView,
     meta: { requiresAuth: true },
   },
   {
