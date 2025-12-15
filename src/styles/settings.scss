@@ -1,0 +1,17 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+// @use 'vuetify/settings' with (
+//   $color-pack: false
+// );
+
+// Global Font Family
+* {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

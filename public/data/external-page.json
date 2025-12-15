@@ -1,0 +1,169 @@
+{
+  "title": "FixIt Campus: Classroom & Facility Issue Reporter",
+  "description": "A comprehensive campus maintenance system that streamlines the reporting and tracking of classroom and facility issues, enabling efficient communication between students, faculty, and maintenance staff.",
+  "subtitle": "Empowering Campus Communities to Report and Resolve Facility Issues",
+  "backgroundImage": {
+    "src": "/images/markup.png",
+    "alt": "Modern campus facility with maintenance concept",
+    "overlay": {
+      "enabled": true,
+      "color": "rgba(33, 150, 243, 0.15)",
+      "opacity": 0.8
+    }
+  },
+  "features": [
+    {
+      "title": "Photo-Based Issue Reporting",
+      "description": "Report facility issues instantly with photo evidence. Capture broken chairs, faulty projectors, or Wi-Fi problems with detailed descriptions and visual documentation.",
+      "icon": "mdi-camera-plus"
+    },
+    {
+      "title": "Real-Time Status Tracking",
+      "description": "Monitor your reported issues from submission to completion. Track status updates through the entire workflow: submitted → in review → in progress → fixed.",
+      "icon": "mdi-timeline-check"
+    },
+    {
+      "title": "Admin Dashboard for Maintenance",
+      "description": "Comprehensive dashboard for maintenance staff to manage, prioritize, and resolve facility issues. Assign tasks, update statuses, and generate maintenance reports.",
+      "icon": "mdi-view-dashboard"
+    },
+    {
+      "title": "Issue Categorization",
+      "description": "Organize reports by categories: furniture damage, network connectivity, audio-visual equipment, electrical issues, and more for efficient maintenance routing.",
+      "icon": "mdi-tag-multiple"
+    }
+  ],
+  "version": "1.0.0",
+  "author": "FixIt Campus Development Team",
+  "lastUpdated": "2025-12-15",
+  "theme": {
+    "primaryColor": "#FF90BB",
+    "secondaryColor": "#FFC1DA"
+  },
+  "ui": {
+    "showNavbar": true,
+    "showFooter": true,
+    "_comment": "Select the navbar component to use: 1, 2, 3, or 4",
+    "navbarComponent": "3",
+    "_footerComment": "Select the footer component to use: 1 or 2",
+    "footerComponent": "2",
+    "navbar": {
+      "title": "FixIt Campus",
+      "icon": "mdi-wrench",
+      "logo": {
+        "src": "/src/assets/logo.svg",
+        "alt": "FixIt Campus Logo",
+        "width": 32,
+        "height": 32
+      },
+      "color": "primary",
+      "elevation": 2,
+      "density": "comfortable",
+      "navigationItems": [
+        {
+          "_comment": "dont change this",
+          "label": "Features",
+          "action": "scroll",
+          "target": "features"
+        },
+        {
+          "_comment": "dont change this",
+          "label": "About",
+          "action": "scroll",
+          "target": "about"
+        }
+      ],
+      "ctaButton": {
+        "label": "Get Started",
+        "variant": "outlined",
+        "color": "on-primary",
+        "action": "navigate",
+        "_comment": "dont change this /auth cause it is linked to the auth page",
+        "target": "/auth"
+      }
+    },
+    "footer": {
+      "companyName": "FixIt Campus",
+      "tagline": "Making campus maintenance seamless and efficient",
+      "icon": "mdi-tools",
+      "color": "grey-darken-3",
+      "copyright": "FixIt Campus Team. All rights reserved.",
+      "socialLinks": [
+        {
+          "platform": "github",
+          "icon": "mdi-github",
+          "url": "https://github.com",
+          "label": "GitHub"
+        },
+        {
+          "platform": "twitter",
+          "icon": "mdi-twitter",
+          "url": "https://twitter.com",
+          "label": "Twitter"
+        },
+        {
+          "platform": "linkedin",
+          "icon": "mdi-linkedin",
+          "url": "https://linkedin.com",
+          "label": "LinkedIn"
+        }
+      ],
+      "technologies": [
+        {
+          "name": "Issue Tracking",
+          "icon": "mdi-clipboard-check",
+          "color": "blue"
+        },
+        {
+          "name": "Photo Upload",
+          "icon": "mdi-image-plus",
+          "color": "green"
+        }
+      ],
+      "thesisTeam": {
+        "enabled": true,
+        "title": "Development Team",
+        "subtitle": "Meet the team revolutionizing campus facility management",
+        "members": [
+          {
+            "name": "Lead Developer",
+            "role": "System Architect",
+            "avatar": "/images/team/sarah.jpg"
+          },
+          {
+            "name": "UX Designer",
+            "role": "User Experience Specialist",
+            "avatar": "/images/team/michael.jpg"
+          },
+          {
+            "name": "Maintenance Coordinator",
+            "role": "Operations Expert",
+            "avatar": "/images/team/emma.jpg"
+          }
+        ]
+      }
+    }
+  },
+  "authPage": {
+    "title": "Welcome to FixIt Campus",
+    "subtitle": "Access your facility issue reporting and management system",
+    "layout": {
+      "quotePosition": "right"
+    },
+    "quote": {
+      "text": "Quality is not an act, it is a habit.",
+      "author": "Aristotle",
+      "source": "Ancient Philosopher",
+      "motivationalText": "Start reporting and resolving campus issues today. Every well-maintained facility begins with timely action."
+    },
+    "backgroundImage": {
+      "src": "/images/auth-background.jpg",
+      "alt": "Modern campus classroom with well-maintained facilities",
+      "overlay": {
+        "enabled": true,
+        "color": "rgba(33, 150, 243, 0.1)",
+        "opacity": 0.9
+      }
+    }
+  }
+}
