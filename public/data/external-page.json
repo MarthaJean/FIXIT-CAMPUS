@@ -1,7 +1,7 @@
 {
-  "title": "FixIt Campus: Classroom & Facility Issue Reporter",
-  "description": "A comprehensive campus maintenance system that streamlines the reporting and tracking of classroom and facility issues, enabling efficient communication between students, faculty, and maintenance staff.",
-  "subtitle": "Empowering Campus Communities to Report and Resolve Facility Issues",
+  "title": "FixIt Campus",
+  "description": "A centralized system for students, faculty, and maintenance staff to manage classroom and facility issues efficiently.",
+  "subtitle": "Report. Track. Resolve campus facility issues—faster. ",
   "backgroundImage": {
     "src": "/images/markup.png",
     "alt": "Modern campus facility with maintenance concept",
@@ -14,22 +14,22 @@
   "features": [
     {
       "title": "Photo-Based Issue Reporting",
-      "description": "Report facility issues instantly with photo evidence. Capture broken chairs, faulty projectors, or Wi-Fi problems with detailed descriptions and visual documentation.",
+      "description": "Easily report classroom or campus issues by uploading a photo and a short description.",
       "icon": "mdi-camera-plus"
     },
     {
       "title": "Real-Time Status Tracking",
-      "description": "Monitor your reported issues from submission to completion. Track status updates through the entire workflow: submitted → in review → in progress → fixed.",
+      "description": "Maintenance staff can view, assign, and resolve reported issues efficiently.",
       "icon": "mdi-timeline-check"
     },
     {
       "title": "Admin Dashboard for Maintenance",
-      "description": "Comprehensive dashboard for maintenance staff to manage, prioritize, and resolve facility issues. Assign tasks, update statuses, and generate maintenance reports.",
+      "description": "Manage, prioritize, and resolve reported issues from one dashboard.",
       "icon": "mdi-view-dashboard"
     },
     {
-      "title": "Issue Categorization",
-      "description": "Organize reports by categories: furniture damage, network connectivity, audio-visual equipment, electrical issues, and more for efficient maintenance routing.",
+      "title": "Report Listing",
+      "description": "View all submitted classroom and facility issue reports in one centralized list with essential details.",
       "icon": "mdi-tag-multiple"
     }
   ],
@@ -49,12 +49,11 @@
     "footerComponent": "2",
     "navbar": {
       "title": "FixIt Campus",
-      "icon": "mdi-wrench",
       "logo": {
-        "src": "/src/assets/logo.svg",
+        "src": "/src/assets/logo.png",
         "alt": "FixIt Campus Logo",
-        "width": 32,
-        "height": 32
+        "width": 70,
+        "height": 80  
       },
       "color": "primary",
       "elevation": 2,

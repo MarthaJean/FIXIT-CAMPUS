@@ -25,78 +25,6 @@ function openLink(url: string) {
     elevation="4"
   >
     <v-container>
-      <!-- Main Footer Content - Two Column Layout -->
-      <v-row justify="center" class="text-center">
-        <!-- Brand Section -->
-        <v-col cols="12" md="6" class="mt-6">
-          <div class="mt-6">
-            <div class="text-h5 font-weight-bold mb-2">
-              <v-avatar
-                :color="footerConfig.companyName ? 'primary' : 'transparent'"
-                size="64"
-                class="mb-3"
-              >
-                <v-icon :icon="footerConfig.icon" size="32" color="white" />
-              </v-avatar>
-              {{ footerConfig.companyName }}
-            </div>
-
-            <div class="text-body-1 text-grey-lighten-1 mb-4">
-              {{ footerConfig.tagline }}
-            </div>
-          </div>
-        </v-col>
-
-        <!-- Thesis Team Section -->
-        <v-col
-          v-if="footerConfig.thesisTeam?.enabled"
-          cols="12"
-          md="6"
-          class="mt-6"
-        >
-          <div class="mb-6">
-            <div class="text-h6 font-weight-bold mb-2">
-              {{ footerConfig.thesisTeam.title }}
-            </div>
-            <div class="text-body-2 text-grey-lighten-1 mb-4">
-              {{ footerConfig.thesisTeam.subtitle }}
-            </div>
-
-            <v-row justify="center" class="no-gutters">
-              <v-col
-                v-for="member in footerConfig.thesisTeam.members"
-                :key="member.name"
-                cols="12"
-                sm="3"
-              >
-                <div>
-                  <v-avatar
-                    :image="member.avatar"
-                    size="64"
-                    class="mb-3"
-                    color="primary"
-                  >
-                    <v-icon
-                      v-if="!member.avatar"
-                      icon="mdi-account"
-                      size="32"
-                    />
-                  </v-avatar>
-
-                  <v-card-title class="text-body-1 font-weight-bold">
-                    {{ member.name }}
-                  </v-card-title>
-
-                  <v-card-subtitle class="text-caption text-grey-lighten-1">
-                    {{ member.role }}
-                  </v-card-subtitle>
-                </div>
-              </v-col>
-            </v-row>
-          </div>
-        </v-col>
-      </v-row>
-
       <!-- Social Links and Technologies Section -->
       <v-row justify="center" class="text-center">
         <v-col cols="12" md="8" lg="6">
@@ -119,31 +47,6 @@ function openLink(url: string) {
             </v-chip>
           </div>
 
-          <!-- Technologies Section with Enhanced Styling -->
-          <div class="mb-6">
-            <div class="text-body-2 text-grey-lighten-2 mb-3">Powered by</div>
-
-            <v-row justify="center" class="no-gutters">
-              <v-col
-                v-for="(tech, index) in footerConfig.technologies"
-                :key="tech.name"
-                cols="auto"
-                class="mx-2"
-              >
-                <div class="pa-3 text-center">
-                  <v-icon
-                    :icon="tech.icon"
-                    :color="tech.color"
-                    size="24"
-                    class="mb-1"
-                  />
-                  <div class="text-caption font-weight-medium">
-                    {{ tech.name }}
-                  </div>
-                </div>
-              </v-col>
-            </v-row>
-          </div>
         </v-col>
       </v-row>
 
@@ -152,7 +55,7 @@ function openLink(url: string) {
 
       <v-row justify="center" class="text-center">
         <v-col cols="12">
-          <div class="text-caption text-grey-lighten-1">
+          <div class="text-caption text-grey-lighten-1 outfit-title">
             {{ currentYear }} © {{ footerConfig.copyright }}
           </div>
         </v-col>
@@ -160,3 +63,20 @@ function openLink(url: string) {
     </v-container>
   </v-footer>
 </template>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
+
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+</style>

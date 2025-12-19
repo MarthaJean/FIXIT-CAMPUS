@@ -101,8 +101,8 @@ onMounted(async () => {
 <template>
   <v-card-title class="d-flex justify-space-between align-center">
     <div>
-      <h3>User Management</h3>
-      <p class="text-subtitle-1 text-grey">Manage all system users</p>
+      <h3 class="outfit-title">User Management</h3>
+      <p class="text-subtitle-1 text-grey joss">Manage all system users</p>
     </div>
     <!--  <v-btn
         color="primary"
@@ -134,8 +134,12 @@ onMounted(async () => {
     <!-- Loading State -->
     <v-row v-if="loading">
       <v-col cols="12" class="text-center py-12">
-        <v-progress-circular indeterminate color="primary" size="64" />
-        <p class="text-body-1 mt-4">Loading users...</p>
+        <img
+          src="@/assets/loading.gif"
+          alt="Loading..."
+          style="width: 200px; height: auto"
+        />
+        <p class="text-body-1 mt-4 joss">Loading users...</p>
       </v-col>
     </v-row>
 
@@ -144,8 +148,8 @@ onMounted(async () => {
       <v-col cols="12">
         <v-card class="text-center py-12" variant="outlined">
           <v-icon size="64" color="grey">mdi-account-off</v-icon>
-          <p class="text-h6 mt-4">No users found</p>
-          <p class="text-body-2 text-grey">
+          <p class="text-h6 mt-4 outfit-title">No users found</p>
+          <p class="text-body-2 text-grey joss">
             {{
               search
                 ? "No users match your search criteria."
@@ -174,8 +178,10 @@ onMounted(async () => {
               }}</span>
             </v-avatar>
             <div class="flex-grow-1">
-              <div class="text-h6">{{ user.full_name || "No Name" }}</div>
-              <div class="text-caption text-medium-emphasis">
+              <div class="text-h6 outfit-title">
+                {{ user.full_name || "No Name" }}
+              </div>
+              <div class="text-caption text-medium-emphasis joss">
                 {{ user.email }}
               </div>
             </div>
@@ -190,12 +196,13 @@ onMounted(async () => {
               <div class="d-flex align-center justify-space-between">
                 <div class="d-flex align-center">
                   <v-icon icon="mdi-shield-account" size="small" class="mr-2" />
-                  <span class="text-caption">Role:</span>
+                  <span class="text-caption joss">Role:</span>
                 </div>
                 <v-chip
                   :color="getRoleColor(user.role_id)"
                   variant="tonal"
                   size="small"
+                  class="joss"
                 >
                   {{ getRoleTitle(user.role_id, rolesStore.roles) }}
                 </v-chip>
@@ -204,7 +211,7 @@ onMounted(async () => {
               <!-- Created At -->
               <div class="d-flex align-center">
                 <v-icon icon="mdi-clock-outline" size="small" class="mr-2" />
-                <span class="text-caption">
+                <span class="text-caption joss">
                   Joined {{ formatDate(user.created_at) }}
                 </span>
               </div>
@@ -269,6 +276,19 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 .v-card-title h3 {
   margin-bottom: 4px;
 }

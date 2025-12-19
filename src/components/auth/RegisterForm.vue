@@ -1,87 +1,106 @@
 <template>
-  <v-card-title class="text-h5 text-center py-6"> Create Account </v-card-title>
+  <div class="register-form-wrapper">
+    <!-- Header with Social Icons -->
+    <div class="form-header">
+      <h2 class="form-title">Register</h2>
+    </div>
 
-  <v-card-text class="px-6 pb-6">
     <v-form ref="formRef" v-model="formValid" @submit.prevent="handleRegister">
       <v-container class="pa-0">
-        <v-row no-gutters>
+        <!-- Username Field -->
+        <v-row no-gutters class="mb-3">
           <v-col cols="12">
+            <label class="field-label">Username</label>
             <v-text-field
               v-model="registerForm.username"
-              label="Username"
+              placeholder="Choose a username"
               variant="outlined"
               density="comfortable"
               :rules="[requiredValidator, usernameValidator]"
               :error-messages="errors.username"
-              prepend-inner-icon="mdi-account"
-              class="mb-4"
-              hint="3-20 characters, letters, numbers, dots, hyphens, underscores"
-              persistent-hint
+              prepend-inner-icon="mdi-account-outline"
+              class="custom-input"
+              bg-color="#ffcce1"
+              rounded="lg"
+              hide-details="auto"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Email Field -->
+        <v-row no-gutters class="mb-3">
           <v-col cols="12">
+            <label class="field-label">Email</label>
             <v-text-field
               v-model="registerForm.email"
-              label="Email"
+              placeholder="Enter your email"
               type="email"
               variant="outlined"
               density="comfortable"
               :rules="[requiredValidator, emailValidator]"
               :error-messages="errors.email"
-              prepend-inner-icon="mdi-email"
-              class="mb-4"
+              prepend-inner-icon="mdi-email-outline"
+              class="custom-input"
+              bg-color="#ffcce1"
+              rounded="lg"
+              hide-details="auto"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Role Field -->
+        <v-row no-gutters class="mb-3">
           <v-col cols="12">
+            <label class="field-label">Role</label>
             <v-select
               v-model="registerForm.role"
-              label="Role"
+              placeholder="Select your role"
               variant="outlined"
               density="comfortable"
               :items="roleOptions"
               :rules="[requiredValidator]"
               :error-messages="errors.role"
-              prepend-inner-icon="mdi-account-group"
-              class="mb-4"
-              hint="Select your role in the organization"
-              persistent-hint
+              prepend-inner-icon="mdi-account-group-outline"
+              class="custom-input"
+              bg-color="#ffcce1"
+              rounded="lg"
+              hide-details="auto"
               :loading="rolesStore.loading"
               :disabled="rolesStore.loading"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Password Field -->
+        <v-row no-gutters class="mb-3">
           <v-col cols="12">
+            <label class="field-label">Password</label>
             <v-text-field
               v-model="registerForm.password"
-              label="Password"
+              placeholder="Create a password"
               :type="showPassword ? 'text' : 'password'"
               variant="outlined"
               density="comfortable"
               :rules="[requiredValidator, passwordValidator]"
               :error-messages="errors.password"
-              prepend-inner-icon="mdi-lock"
+              prepend-inner-icon="mdi-lock-outline"
               :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append-inner="showPassword = !showPassword"
-              class="mb-4"
-              hint="At least 8 characters with uppercase, lowercase, number, and special character"
-              persistent-hint
+              class="custom-input"
+              bg-color="#ffcce1"
+              rounded="lg"
+              hide-details="auto"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Confirm Password Field -->
+        <v-row no-gutters class="mb-6">
           <v-col cols="12">
+            <label class="field-label">Confirm Password</label>
             <v-text-field
               v-model="registerForm.confirmPassword"
-              label="Confirm Password"
+              placeholder="Confirm your password"
               :type="showConfirmPassword ? 'text' : 'password'"
               variant="outlined"
               density="comfortable"
@@ -90,52 +109,56 @@
                   (v: string) => confirmedValidator(v, registerForm.password)
                 ]"
               :error-messages="errors.confirmPassword"
-              prepend-inner-icon="mdi-lock-check"
+              prepend-inner-icon="mdi-lock-check-outline"
               :append-inner-icon="
                 showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'
               "
               @click:append-inner="showConfirmPassword = !showConfirmPassword"
-              class="mb-6"
+              class="custom-input"
+              bg-color="#ffcce1 "
+              rounded="lg"
+              hide-details="auto"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Register Button -->
+        <v-row no-gutters class="mb-4">
           <v-col cols="12">
             <v-btn
               type="submit"
-              color="on-primary"
-              variant="elevated"
+              color="#EC7FA9"
+              variant="flat"
               size="large"
               block
               :loading="isLoading"
               :disabled="!formValid || isLoading"
-              class="mb-4"
+              class="register-btn"
+              rounded="lg"
             >
               Create Account
             </v-btn>
           </v-col>
         </v-row>
 
+        <!-- Sign In Link -->
         <v-row no-gutters>
           <v-col cols="12" class="text-center">
-            <span class="text-body-2 text-medium-emphasis">
+            <span class="signin-text">
               Already have an account?
+              <a
+                href="#"
+                class="signin-link"
+                @click.prevent="$emit('switch-to-login')"
+              >
+                Sign In
+              </a>
             </span>
-            <v-btn
-              variant="text"
-              color="light"
-              size="small"
-              class="ml-1"
-              @click="$emit('switch-to-login')"
-            >
-              Sign In
-            </v-btn>
           </v-col>
         </v-row>
       </v-container>
     </v-form>
-  </v-card-text>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -288,3 +311,64 @@ defineExpose({
   resetForm,
 });
 </script>
+
+<style scoped>
+.register-form-wrapper {
+  padding: 32px;
+  background: linear-gradient(135deg, #ffe5ec 0%, #fff0f5 100%);
+  border-radius: 12px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.field-label {
+  display: block;
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.custom-input :deep(.v-field) {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.custom-input :deep(.v-field__prepend-inner) {
+  color: #000000;
+}
+
+.register-btn {
+  text-transform: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: white !important;
+}
+
+.signin-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.signin-link {
+  color: #e83c91;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+</style>

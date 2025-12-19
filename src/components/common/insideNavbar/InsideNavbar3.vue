@@ -169,10 +169,12 @@ async function handleLogout() {
 
           <!-- Hide title on mobile to minimize navbar -->
           <div class="d-flex flex-column ms-2 d-none d-md-flex">
-            <span class="text-subtitle-1 font-weight-bold text-primary">
+            <span
+              class="text-subtitle-1 font-weight-bold text-primary outfit-title"
+            >
               {{ navbarConfig.title }}
             </span>
-            <span class="text-caption text-medium-emphasis">
+            <span class="text-caption text-medium-emphasis joss">
               Academic Excellence
             </span>
           </div>
@@ -293,10 +295,10 @@ async function handleLogout() {
             </v-badge>
 
             <div class="d-flex flex-column">
-              <span class="text-h6 font-weight-bold text-primary">
+              <span class="text-h6 font-weight-bold text-primary outfit-title">
                 {{ navbarConfig.title }}
               </span>
-              <span class="text-caption text-medium-emphasis">
+              <span class="text-caption text-medium-emphasis joss">
                 Academic Excellence
               </span>
             </div>
@@ -391,5 +393,17 @@ async function handleLogout() {
 </template>
 
 <style scoped>
-/* All styling handled by Vuetify components and utilities only */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 </style>

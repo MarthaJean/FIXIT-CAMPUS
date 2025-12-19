@@ -1,31 +1,34 @@
 <script setup lang="ts">
-import { computed, ref, watch, onMounted } from 'vue'
-import type { Role, CreateRoleData } from '@/stores/roles'
-import { getNavigationWithSelection, getAllPermissions } from '@/utils/navigation'
-import { useRoleEditFetchDialog } from '../composables/roleEditFetchDialog'
+import { computed, ref, watch, onMounted } from "vue";
+import type { Role, CreateRoleData } from "@/stores/roles";
+import {
+  getNavigationWithSelection,
+  getAllPermissions,
+} from "@/utils/navigation";
+import { useRoleEditFetchDialog } from "../composables/roleEditFetchDialog";
 
 interface Props {
   // Dialog state
-  isDialogOpen: boolean
-  isDeleteDialogOpen: boolean
-  isEditing: boolean
-  selectedRole: Role | null
-  formData: CreateRoleData
-  loading: boolean
+  isDialogOpen: boolean;
+  isDeleteDialogOpen: boolean;
+  isEditing: boolean;
+  selectedRole: Role | null;
+  formData: CreateRoleData;
+  loading: boolean;
 
   // Computed
-  isFormValid: boolean
+  isFormValid: boolean;
 }
 
 interface Emits {
-  (e: 'close-dialog'): void
-  (e: 'handle-submit', selectedPermissions: string[]): void
-  (e: 'handle-delete'): void
-  (e: 'update:formData', value: CreateRoleData): void
+  (e: "close-dialog"): void;
+  (e: "handle-submit", selectedPermissions: string[]): void;
+  (e: "handle-delete"): void;
+  (e: "update:formData", value: CreateRoleData): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 // Use the role edit fetch composable
 const {
@@ -34,22 +37,22 @@ const {
   fetchRolePermissions,
   saveRolePermissions,
   hasPermission,
-  clearPermissions
-} = useRoleEditFetchDialog()
+  clearPermissions,
+} = useRoleEditFetchDialog();
 
 // Local reactive form data
 const localFormData = computed({
   get: () => props.formData,
-  set: (value) => emit('update:formData', value)
-})
+  set: (value) => emit("update:formData", value),
+});
 
 // Page control data - dynamically generated from navigation config
-const adminGroupExpanded = ref(true)
-const organizationGroupExpanded = ref(true)
-const myAccountGroupExpanded = ref(true)
+const adminGroupExpanded = ref(true);
+const organizationGroupExpanded = ref(true);
+const myAccountGroupExpanded = ref(true);
 
 // Selected permissions for the role - initialized from current role permissions when editing
-const selectedPermissions = ref<string[]>([])
+const selectedPermissions = ref<string[]>([]);
 
 // Watch for changes in selectedRole to fetch permissions when editing
 watch(
@@ -57,69 +60,69 @@ watch(
   async (newRole) => {
     if (newRole && props.isEditing) {
       // Fetch current permissions for the role
-      await fetchRolePermissions(newRole.id)
+      await fetchRolePermissions(newRole.id);
       // Set selected permissions to current role permissions
-      selectedPermissions.value = [...currentRolePermissions.value]
+      selectedPermissions.value = [...currentRolePermissions.value];
     } else {
       // Clear permissions when creating new role or closing dialog
-      selectedPermissions.value = []
-      clearPermissions()
+      selectedPermissions.value = [];
+      clearPermissions();
     }
   },
   { immediate: true }
-)
+);
 
 // Watch for dialog open/close to reset permissions
 watch(
   () => props.isDialogOpen,
   (isOpen) => {
     if (!isOpen) {
-      selectedPermissions.value = []
-      clearPermissions()
+      selectedPermissions.value = [];
+      clearPermissions();
     }
   }
-)
+);
 
 // Get navigation groups with selection state
 const navigationGroups = computed(() =>
   getNavigationWithSelection(selectedPermissions.value)
-)
+);
 
 // Helper function to get group expansion state
 const getGroupExpansion = (groupTitle: string) => {
-  if (groupTitle === 'Admin Controls') return adminGroupExpanded
-  if (groupTitle === 'My Organization') return organizationGroupExpanded
-  if (groupTitle === 'My Account') return myAccountGroupExpanded
-  return ref(true)
-}
+  if (groupTitle === "Admin Controls") return adminGroupExpanded;
+  if (groupTitle === "My Organization") return organizationGroupExpanded;
+  if (groupTitle === "My Account") return myAccountGroupExpanded;
+  return ref(true);
+};
 
 // Handle permission toggle
 const togglePermission = (permission: string, selected: boolean) => {
   if (selected) {
     if (!selectedPermissions.value.includes(permission)) {
-      selectedPermissions.value.push(permission)
+      selectedPermissions.value.push(permission);
     }
   } else {
-    const index = selectedPermissions.value.indexOf(permission)
+    const index = selectedPermissions.value.indexOf(permission);
     if (index > -1) {
-      selectedPermissions.value.splice(index, 1)
+      selectedPermissions.value.splice(index, 1);
     }
   }
-}
+};
 
 const closeDialog = () => {
-  emit('close-dialog')
-}
+  emit("close-dialog");
+};
 
 const handleSubmit = async () => {
   // For editing, let the parent handle both role update and permission saving
   // For creating, just emit the permissions to be saved after role creation
-  emit('handle-submit', selectedPermissions.value)
-}
+  emit("handle-submit", selectedPermissions.value);
+};
 
 const handleDelete = () => {
-  emit('handle-delete')
-}
+  emit("handle-delete");
+};
 </script>
 
 <template>
@@ -132,7 +135,7 @@ const handleDelete = () => {
   >
     <v-card>
       <v-card-title class="text-h5 pa-6 pb-4">
-        {{ isEditing ? 'Edit Role' : 'Create New Role' }}
+        {{ isEditing ? "Edit Role" : "Create New Role" }}
       </v-card-title>
 
       <v-card-text class="pa-6 pt-0">
@@ -145,7 +148,7 @@ const handleDelete = () => {
                 v-model="localFormData.title"
                 label="Role Title *"
                 variant="outlined"
-                :rules="[v => !!v || 'Role title is required']"
+                :rules="[(v) => !!v || 'Role title is required']"
                 required
                 autofocus
               />
@@ -156,10 +159,13 @@ const handleDelete = () => {
           <v-col cols="12" md="6">
             <h3 class="text-h6 mb-4">Page Access Control</h3>
             <div class="page-control-container">
-
               <!-- Loading state for permissions -->
               <div v-if="permissionsLoading" class="text-center py-6">
-                <v-progress-circular indeterminate color="primary" size="32" />
+                <img
+                  src="@/assets/loading.gif"
+                  alt="Loading..."
+                  style="width: 150px; height: auto"
+                />
                 <p class="text-body-2 mt-2">Loading role permissions...</p>
               </div>
 
@@ -172,10 +178,18 @@ const handleDelete = () => {
               >
                 <!-- Group Header -->
                 <v-list-item
-                  @click="getGroupExpansion(group.title).value = !getGroupExpansion(group.title).value"
+                  @click="
+                    getGroupExpansion(group.title).value = !getGroupExpansion(
+                      group.title
+                    ).value
+                  "
                   class="mb-1 rounded-lg group-header pa-2"
                   :prepend-icon="group.icon"
-                  :append-icon="getGroupExpansion(group.title).value ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                  :append-icon="
+                    getGroupExpansion(group.title).value
+                      ? 'mdi-chevron-up'
+                      : 'mdi-chevron-down'
+                  "
                   density="compact"
                 >
                   <v-list-item-title class="font-weight-medium text-body-2">
@@ -185,7 +199,10 @@ const handleDelete = () => {
 
                 <!-- Collapsible Children -->
                 <v-expand-transition>
-                  <div v-show="getGroupExpansion(group.title).value" class="group-children">
+                  <div
+                    v-show="getGroupExpansion(group.title).value"
+                    class="group-children"
+                  >
                     <v-list-item
                       v-for="child in group.children"
                       :key="child.title"
@@ -206,14 +223,16 @@ const handleDelete = () => {
                       <v-list-item-title class="text-body-2">
                         {{ child.title }}
                       </v-list-item-title>
-                      <v-list-item-subtitle class="text-caption" v-if="child.route">
+                      <v-list-item-subtitle
+                        class="text-caption"
+                        v-if="child.route"
+                      >
                         {{ child.route }}
                       </v-list-item-subtitle>
                     </v-list-item>
                   </div>
                 </v-expand-transition>
               </div>
-
             </div>
           </v-col>
         </v-row>
@@ -221,20 +240,16 @@ const handleDelete = () => {
 
       <v-card-actions class="pa-6 pt-0">
         <v-spacer />
-        <v-btn
-          variant="text"
-          @click="closeDialog"
-          :disabled="loading"
-        >
+        <v-btn variant="text" @click="closeDialog" :disabled="loading">
           Cancel
         </v-btn>
         <v-btn
-          color="primary"
+          color="#000"
           @click="handleSubmit"
           :loading="loading || permissionsLoading"
           :disabled="!isFormValid"
         >
-          {{ isEditing ? 'Update' : 'Create' }}
+          {{ isEditing ? "Update" : "Create" }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -248,39 +263,25 @@ const handleDelete = () => {
     @update:model-value="!$event && closeDialog()"
   >
     <v-card>
-      <v-card-title class="text-h5 pa-6 pb-4">
-        Confirm Delete
-      </v-card-title>
+      <v-card-title class="text-h5 pa-6 pb-4"> Confirm Delete </v-card-title>
 
       <v-card-text class="pa-6 pt-0">
         <p class="text-body-1 mb-4">
           Are you sure you want to delete the role
           <strong>"{{ selectedRole?.title }}"</strong>?
         </p>
-        <v-alert
-          type="warning"
-          variant="tonal"
-          density="compact"
-          class="mb-0"
-        >
-          This action cannot be undone and will also delete all associated role pages.
+        <v-alert type="warning" variant="tonal" density="compact" class="mb-0">
+          This action cannot be undone and will also delete all associated role
+          pages.
         </v-alert>
       </v-card-text>
 
       <v-card-actions class="pa-6 pt-0">
         <v-spacer />
-        <v-btn
-          variant="text"
-          @click="closeDialog"
-          :disabled="loading"
-        >
+        <v-btn variant="text" @click="closeDialog" :disabled="loading">
           Cancel
         </v-btn>
-        <v-btn
-          color="error"
-          @click="handleDelete"
-          :loading="loading"
-        >
+        <v-btn color="error" @click="handleDelete" :loading="loading">
           Delete
         </v-btn>
       </v-card-actions>
