@@ -208,12 +208,7 @@ onMounted(() => {
                 cover
                 class="align-end"
               >
-                <v-chip
-                  class="ma-2"
-                  color="primary"
-                  size="small"
-                  prepend-icon="mdi-identifier"
-                >
+                <v-chip class="ma-2" color="#000" size="small">
                   ID: {{ report.id }}
                 </v-chip>
               </v-img>
@@ -286,7 +281,7 @@ onMounted(() => {
               <!-- Card Actions -->
               <v-card-actions class="px-4 pb-4">
                 <v-btn
-                  color="primary"
+                  color="#000"
                   variant="tonal"
                   prepend-icon="mdi-eye"
                   @click="openDetailsDialog(report)"

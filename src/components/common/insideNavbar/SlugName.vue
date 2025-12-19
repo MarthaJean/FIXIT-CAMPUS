@@ -64,7 +64,7 @@ async function handleLogout() {
               </span>
             </v-avatar>
 
-            <div class="flex-grow-1">
+            <div class="flex-grow-1 outfit-title">
               <div
                 class="text-h6 font-weight-bold text-high-emphasis outfit-title"
               >

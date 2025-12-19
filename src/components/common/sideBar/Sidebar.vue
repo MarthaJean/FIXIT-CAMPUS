@@ -89,10 +89,12 @@ const handleLogout = async () => {
     <!-- Sidebar Header -->
     <v-list-item class="pa-4">
       <v-list-item-content>
-        <v-list-item-title class="text-h6 font-weight-bold primary--text">
+        <v-list-item-title
+          class="text-h6 font-weight-bold primary--text outfit-title"
+        >
           Menu
         </v-list-item-title>
-        <v-list-item-subtitle class="text-caption grey--text">
+        <v-list-item-subtitle class="text-caption grey--text joss">
           Management System
         </v-list-item-subtitle>
       </v-list-item-content>
@@ -175,8 +177,7 @@ const handleLogout = async () => {
 
 <style scoped>
 .v-navigation-drawer {
-  /* Remove static background so Vuetify theme color applies */
-  z-index: 1000 !important; /* Ensure sidebar is above other content but below navbar */
+  z-index: 1000 !important;
 }
 
 .sidebar-full-height {
@@ -232,5 +233,18 @@ const handleLogout = async () => {
   background-color: rgba(0, 0, 0, 0.02);
   border-radius: 8px;
   padding: 4px 0;
+}
+
+/* Font imports */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
+
+/* Font classes */
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
 }
 </style>

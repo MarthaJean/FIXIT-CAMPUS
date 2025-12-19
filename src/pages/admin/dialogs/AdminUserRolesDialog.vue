@@ -244,7 +244,7 @@ const handleDelete = () => {
           Cancel
         </v-btn>
         <v-btn
-          color="primary"
+          color="#000"
           @click="handleSubmit"
           :loading="loading || permissionsLoading"
           :disabled="!isFormValid"

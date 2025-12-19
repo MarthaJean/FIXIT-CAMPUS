@@ -49,12 +49,11 @@
     "footerComponent": "2",
     "navbar": {
       "title": "FixIt Campus",
-      "icon": "mdi-wrench",
       "logo": {
-        "src": "/src/assets/logo.svg",
+        "src": "/src/assets/logo.png",
         "alt": "FixIt Campus Logo",
-        "width": 32,
-        "height": 32
+        "width": 70,
+        "height": 80  
       },
       "color": "primary",
       "elevation": 2,

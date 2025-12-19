@@ -186,13 +186,6 @@ const formatDate = (dateString: string) => {
                   <v-icon size="16" class="mr-1">mdi-plus-circle</v-icon>
                   Click to create new role
                 </div>
-
-                <div
-                  class="d-flex align-center text-body-2 text-grey-darken-1 mt-1 joss"
-                >
-                  <v-icon size="16" class="mr-1">mdi-account-plus</v-icon>
-                  Create role
-                </div>
               </v-card-text>
             </v-card>
           </v-col>

@@ -47,33 +47,6 @@ function openLink(url: string) {
             </v-chip>
           </div>
 
-          <!-- Technologies Section with Enhanced Styling -->
-          <div class="mb-6">
-            <div class="text-body-2 text-grey-lighten-2 mb-3 outfit-title">
-              Powered by
-            </div>
-
-            <v-row justify="center" class="no-gutters">
-              <v-col
-                v-for="(tech, index) in footerConfig.technologies"
-                :key="tech.name"
-                cols="auto"
-                class="mx-2"
-              >
-                <div class="pa-3 text-center">
-                  <v-icon
-                    :icon="tech.icon"
-                    :color="tech.color"
-                    size="24"
-                    class="mb-1"
-                  />
-                  <div class="text-caption font-weight-medium joss">
-                    {{ tech.name }}
-                  </div>
-                </div>
-              </v-col>
-            </v-row>
-          </div>
         </v-col>
       </v-row>
 

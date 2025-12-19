@@ -102,7 +102,6 @@ onMounted(async () => {
   }
 });
 
-// This page uses the default layout and doesn't require authentication
 </script>
 
 <template>
@@ -208,15 +207,17 @@ onMounted(async () => {
 
 <style scoped>
 .quote-section {
-  background-image: url("@/assets/quote-frame.png");
-  background-size: contain;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 80px 60px;
+  padding: 100px 80px;
+  position: relative;
 }
 
 .quote-content {
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 </style>
