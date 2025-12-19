@@ -101,7 +101,6 @@ onMounted(async () => {
     isLoginMode.value = true;
   }
 });
-
 </script>
 
 <template>
