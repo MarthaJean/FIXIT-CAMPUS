@@ -15,12 +15,12 @@ export interface NavigationGroup {
 
 export const navigationConfig: NavigationGroup[] = [
   {
-    title: "My Account",
-    icon: "mdi-account",
+    title: "Home",
+    icon: "mdi-home",
     children: [
       {
-        title: "Home",
-        icon: "mdi-home",
+        title: "Report",
+        icon: "mdi-file-document",
         route: "/account/home",
         permission: "admin.dashboard.view",
       },

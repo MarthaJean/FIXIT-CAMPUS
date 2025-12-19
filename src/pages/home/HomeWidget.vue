@@ -131,8 +131,8 @@ const classrooms = ref([
 
 <template>
   <v-card class="mx-auto" max-width="800">
-    <v-card-title class="text-h5 bg-primary">
-      Report Classroom & Facility Issue
+    <v-card-title class="text-h5 bg-primary joss">
+      Report Issue Form
     </v-card-title>
 
     <v-card-text class="pt-6">
@@ -223,6 +223,19 @@ const classrooms = ref([
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 .v-card-title {
   color: white;
 }

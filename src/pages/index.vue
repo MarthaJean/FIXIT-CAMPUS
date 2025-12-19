@@ -46,7 +46,11 @@ function formatDate(dateString: string) {
           class="d-flex justify-center align-center"
           style="min-height: 50vh"
         >
-          <v-progress-circular color="primary" indeterminate size="64" />
+          <img
+            src="@/assets/loading.gif"
+            alt="Loading..."
+            style="width: 200px; height: auto"
+          />
         </v-container>
 
         <!-- Error State -->

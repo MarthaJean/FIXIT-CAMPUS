@@ -37,10 +37,11 @@ const loadDynamicTheme = async () => {
     theme.themes.value.light = themeConfig.themes.light;
     theme.themes.value.dark = themeConfig.themes.dark;
 
-    console.log('Dynamic theme loaded successfully');
+    console.log("Dynamic theme loaded successfully");
   } catch (error) {
-    console.error('Failed to load dynamic theme:', error);
-    themeError.value = error instanceof Error ? error.message : 'Failed to load theme';
+    console.error("Failed to load dynamic theme:", error);
+    themeError.value =
+      error instanceof Error ? error.message : "Failed to load theme";
   } finally {
     themeLoading.value = false;
   }
@@ -56,10 +57,10 @@ onMounted(async () => {
 <template>
   <!-- Theme Loading State -->
   <v-overlay v-if="themeLoading" class="d-flex align-center justify-center">
-    <v-progress-circular
-      indeterminate
-      size="64"
-      color="primary"
+    <img
+      src="@/assets/loading.gif"
+      alt="Loading..."
+      style="width: 200px; height: auto"
     />
     <div class="text-h6 ml-4">Loading theme...</div>
   </v-overlay>
@@ -83,18 +84,12 @@ onMounted(async () => {
         <v-container class="mx-auto text-center" elevation="8" rounded="lg">
           <v-card-text class="py-8">
             <!-- 403 Icon -->
-            <v-icon
-              size="120"
-              color="error"
-              class="mb-4"
-            >
+            <v-icon size="120" color="error" class="mb-4">
               mdi-lock-outline
             </v-icon>
 
             <!-- Error Code -->
-            <div class="text-h1 font-weight-bold text-error mb-2">
-              403
-            </div>
+            <div class="text-h1 font-weight-bold text-error mb-2">403</div>
 
             <!-- Error Title -->
             <div class="text-h4 font-weight-light mb-4 text-error">
@@ -103,8 +98,9 @@ onMounted(async () => {
 
             <!-- Error Description -->
             <div class="text-body-1 text-medium-emphasis mb-6">
-              You don't have permission to access this resource. This might be because
-              your user role doesn't include access to this page, or your session has expired.
+              You don't have permission to access this resource. This might be
+              because your user role doesn't include access to this page, or
+              your session has expired.
             </div>
 
             <!-- Helpful Suggestions -->
@@ -172,7 +168,7 @@ onMounted(async () => {
             :color="`error`"
             :style="{
               opacity: Math.random() * 0.1 + 0.02,
-              transform: `rotate(${Math.random() * 360}deg)`
+              transform: `rotate(${Math.random() * 360}deg)`,
             }"
           >
             mdi-lock

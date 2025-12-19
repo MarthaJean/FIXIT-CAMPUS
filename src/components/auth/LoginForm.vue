@@ -1,78 +1,100 @@
 <template>
-  <v-card-title class="text-h5 text-center py-6"> Sign In </v-card-title>
+  <div class="login-form-wrapper">
+    <!-- Header with Social Icons -->
+    <div class="form-header">
+      <h2 class="form-title">Sign in</h2>
+    </div>
 
-  <v-card-text class="px-6 pb-6">
     <v-form ref="formRef" v-model="formValid" @submit.prevent="handleLogin">
       <v-container class="pa-0">
-        <v-row no-gutters>
+        <!-- Username/Email Field -->
+        <v-row no-gutters class="mb-3">
           <v-col cols="12">
+            <label class="field-label">Username</label>
             <v-text-field
               v-model="loginForm.email"
-              label="Email"
+              placeholder="Enter your username or email"
               type="email"
               variant="outlined"
               density="comfortable"
               :rules="[requiredValidator, emailValidator]"
               :error-messages="errors.email"
-              prepend-inner-icon="mdi-email"
-              class="mb-4"
+              prepend-inner-icon="mdi-account-outline"
+              class="custom-input"
+              bg-color="#ffcce1"
+              rounded="lg"
+              hide-details="auto"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Password Field -->
+        <v-row no-gutters class="mb-2">
           <v-col cols="12">
+            <label class="field-label">Password</label>
             <v-text-field
               v-model="loginForm.password"
-              :label="passwordLabel"
+              placeholder="Enter your password"
               :type="showPassword ? 'text' : 'password'"
               variant="outlined"
               density="comfortable"
               :rules="[requiredValidator]"
               :error-messages="errors.password"
-              prepend-inner-icon="mdi-lock"
+              prepend-inner-icon="mdi-lock-outline"
               :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append-inner="showPassword = !showPassword"
-              class="mb-6"
+              class="custom-input"
+              bg-color="#ffcce1"
+              rounded="lg"
+              hide-details="auto"
             />
           </v-col>
         </v-row>
 
-        <v-row no-gutters>
+        <!-- Forgot Password -->
+        <v-row no-gutters class="mb-6">
+          <v-col cols="12" class="text-right">
+            <a href="#" class="forgot-password-link">Forgot password</a>
+          </v-col>
+        </v-row>
+
+        <!-- Sign In Button -->
+        <v-row no-gutters class="mb-4">
           <v-col cols="12">
             <v-btn
               type="submit"
-              color="on-primary"
-              variant="elevated"
+              color="#EC7FA9"
+              variant="flat"
               size="large"
               block
               :loading="isLoading"
               :disabled="!formValid || isLoading"
-              class="mb-4"
+              class="sign-in-btn"
+              rounded="lg"
             >
-              Sign In
+              Sign in
             </v-btn>
           </v-col>
         </v-row>
 
+        <!-- Register Link -->
         <v-row no-gutters>
           <v-col cols="12" class="text-center">
-            <span class="text-body-2 text-medium-emphasis">
+            <span class="register-text">
               Don't have an account?
+              <a
+                href="#"
+                class="register-link"
+                @click.prevent="$emit('switch-to-register')"
+              >
+                Register
+              </a>
             </span>
-            <v-btn
-              variant="text"
-              size="small"
-              class="ml-1"
-              @click="$emit('switch-to-register')"
-            >
-              Sign Up
-            </v-btn>
           </v-col>
         </v-row>
       </v-container>
     </v-form>
-  </v-card-text>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -134,10 +156,7 @@ const handleLogin = async () => {
   clearErrors();
 
   try {
-    const result = await authStore.signIn(
-      loginForm.email,
-      loginForm.password
-    );
+    const result = await authStore.signIn(loginForm.email, loginForm.password);
 
     if (result.error) {
       const errorMessage = getErrorMessage(result.error);
@@ -174,3 +193,76 @@ defineExpose({
   resetForm,
 });
 </script>
+
+<style scoped>
+.login-form-wrapper {
+  padding: 32px;
+  background: linear-gradient(135deg, #ffe5ec 0%, #fff0f5 100%);
+  border-radius: 12px;
+  min-height: 400px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.field-label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.custom-input :deep(.v-field) {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.custom-input :deep(.v-field__prepend-inner) {
+  color: #999;
+}
+
+.forgot-password-link {
+  font-size: 14px;
+  color: #e83c91;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+.sign-in-btn {
+  text-transform: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: white !important;
+}
+
+.register-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.register-link {
+  color: #e83c91;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+</style>

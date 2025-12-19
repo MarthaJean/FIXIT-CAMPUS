@@ -94,24 +94,46 @@ onMounted(() => {
     <template #content>
       <v-container fluid class="pa-6">
         <!-- Header -->
-        <v-row class="mb-4">
+        <v-row class="mb-6">
           <v-col cols="12">
-            <div class="d-flex justify-space-between align-center">
+            <div
+              class="d-flex justify-space-between align-center flex-wrap gap-3"
+            >
               <div>
-                <h1 class="text-h4 font-weight-bold mb-2">Report Management</h1>
-                <p class="text-subtitle-1 text-medium-emphasis">
+                <h1 class="text-h4 font-weight-bold mb-2 outfit-title">
+                  Report Management
+                </h1>
+                <p class="text-subtitle-1 text-medium-emphasis joss">
                   View and manage classroom & facility issue reports
                 </p>
               </div>
-              <v-btn
-                color="primary"
-                prepend-icon="mdi-refresh"
-                @click="refreshReports"
-                :loading="reportsStore.loading"
-              >
-                Refresh
-              </v-btn>
             </div>
+          </v-col>
+        </v-row>
+
+        <!-- Search and Refresh Section -->
+        <v-row class="mb-4">
+          <v-col cols="12" md="6">
+            <v-text-field
+              v-model="searchQuery"
+              prepend-inner-icon="mdi-magnify"
+              label="Search reports"
+              placeholder="Search by title, description, or ID..."
+              variant="outlined"
+              density="comfortable"
+              clearable
+              hide-details
+            />
+          </v-col>
+          <v-col cols="12" md="6" class="d-flex justify-end align-center">
+            <v-btn
+              variant="outlined"
+              prepend-icon="mdi-refresh"
+              @click="refreshReports"
+              :loading="reportsStore.loading"
+            >
+              Refresh
+            </v-btn>
           </v-col>
         </v-row>
 
@@ -128,10 +150,10 @@ onMounted(() => {
                     class="mr-3"
                   />
                   <div>
-                    <div class="text-h5 font-weight-bold">
+                    <div class="text-h5 font-weight-bold outfit-title">
                       {{ totalReports }}
                     </div>
-                    <div class="text-caption text-medium-emphasis">
+                    <div class="text-caption text-medium-emphasis joss">
                       Total Reports
                     </div>
                   </div>
@@ -141,27 +163,15 @@ onMounted(() => {
           </v-col>
         </v-row>
 
-        <!-- Search and Filters -->
-        <v-row class="mb-4">
-          <v-col cols="12" md="6">
-            <v-text-field
-              v-model="searchQuery"
-              prepend-inner-icon="mdi-magnify"
-              label="Search reports"
-              placeholder="Search by title, description, or ID..."
-              variant="outlined"
-              density="comfortable"
-              clearable
-              hide-details
-            />
-          </v-col>
-        </v-row>
-
         <!-- Reports Cards -->
         <v-row v-if="reportsStore.loading" class="mb-4">
           <v-col cols="12" class="text-center py-12">
-            <v-progress-circular indeterminate color="primary" size="64" />
-            <p class="text-body-1 mt-4">Loading reports...</p>
+            <img
+              src="@/assets/loading.gif"
+              alt="Loading..."
+              style="width: 200px; height: auto"
+            />
+            <p class="text-body-1 mt-4 joss">Loading reports...</p>
           </v-col>
         </v-row>
 
@@ -173,8 +183,8 @@ onMounted(() => {
                 size="64"
                 color="grey"
               />
-              <p class="text-h6 mt-4">No reports found</p>
-              <p class="text-body-2 text-medium-emphasis">
+              <p class="text-h6 mt-4 outfit-title">No reports found</p>
+              <p class="text-body-2 text-medium-emphasis joss">
                 There are no reports matching your criteria
               </p>
             </v-card>
@@ -215,7 +225,7 @@ onMounted(() => {
                       size="64"
                       color="grey"
                     />
-                    <p class="text-caption text-medium-emphasis mt-2">
+                    <p class="text-caption text-medium-emphasis mt-2 joss">
                       No image attached
                     </p>
                   </div>
@@ -232,13 +242,13 @@ onMounted(() => {
               </div>
 
               <!-- Card Content -->
-              <v-card-title class="text-h6">
+              <v-card-title class="text-h6 outfit-title">
                 {{ report.title }}
               </v-card-title>
 
               <v-card-text>
                 <!-- Description -->
-                <p class="text-body-2 mb-3 text-truncate-2">
+                <p class="text-body-2 mb-3 text-truncate-2 joss">
                   {{ report.description }}
                 </p>
 
@@ -246,7 +256,7 @@ onMounted(() => {
                 <div class="d-flex flex-column gap-2">
                   <div class="d-flex align-center">
                     <v-icon icon="mdi-door" size="small" class="mr-2" />
-                    <span class="text-caption">Classroom:</span>
+                    <span class="text-caption joss">Classroom:</span>
                     <v-chip class="ml-2" color="primary" size="x-small">
                       {{ report.classroom_id }}
                     </v-chip>
@@ -254,7 +264,7 @@ onMounted(() => {
 
                   <div class="d-flex align-center">
                     <v-icon icon="mdi-account" size="small" class="mr-2" />
-                    <span class="text-caption">Submitted by:</span>
+                    <span class="text-caption joss">Submitted by:</span>
                     <v-chip class="ml-2" color="info" size="x-small">
                       {{ report.user_id.substring(0, 8) }}...
                     </v-chip>
@@ -266,7 +276,7 @@ onMounted(() => {
                       size="small"
                       class="mr-2"
                     />
-                    <span class="text-caption">
+                    <span class="text-caption joss">
                       {{ formatDate(report.created_at) }}
                     </span>
                   </div>
@@ -310,7 +320,7 @@ onMounted(() => {
           <v-card-title
             class="d-flex justify-space-between align-center bg-primary"
           >
-            <span class="text-h5">Report Details</span>
+            <span class="text-h5 outfit-title">Report Details</span>
             <v-btn icon variant="text" @click="closeDialogs">
               <v-icon>mdi-close</v-icon>
             </v-btn>
@@ -320,28 +330,30 @@ onMounted(() => {
             <v-row>
               <v-col cols="12">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-1">
+                  <div class="text-caption text-medium-emphasis mb-1 joss">
                     Report ID
                   </div>
-                  <div class="text-body-1">{{ selectedReport.id }}</div>
+                  <div class="text-body-1 joss">{{ selectedReport.id }}</div>
                 </div>
               </v-col>
 
               <v-col cols="12">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-1">
+                  <div class="text-caption text-medium-emphasis mb-1 joss">
                     Title
                   </div>
-                  <div class="text-h6">{{ selectedReport.title }}</div>
+                  <div class="text-h6 outfit-title">
+                    {{ selectedReport.title }}
+                  </div>
                 </div>
               </v-col>
 
               <v-col cols="12">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-1">
+                  <div class="text-caption text-medium-emphasis mb-1 joss">
                     Description
                   </div>
-                  <div class="text-body-1">
+                  <div class="text-body-1 joss">
                     {{ selectedReport.description }}
                   </div>
                 </div>
@@ -349,7 +361,7 @@ onMounted(() => {
 
               <v-col cols="12" md="6">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-1">
+                  <div class="text-caption text-medium-emphasis mb-1 joss">
                     Classroom ID
                   </div>
                   <v-chip color="primary" size="small">{{
@@ -360,7 +372,7 @@ onMounted(() => {
 
               <v-col cols="12" md="6">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-1">
+                  <div class="text-caption text-medium-emphasis mb-1 joss">
                     Submitted By
                   </div>
                   <v-chip color="info" size="small">{{
@@ -371,10 +383,10 @@ onMounted(() => {
 
               <v-col cols="12">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-1">
+                  <div class="text-caption text-medium-emphasis mb-1 joss">
                     Submitted At
                   </div>
-                  <div class="text-body-1">
+                  <div class="text-body-1 joss">
                     {{ formatDate(selectedReport.created_at) }}
                   </div>
                 </div>
@@ -382,7 +394,7 @@ onMounted(() => {
 
               <v-col v-if="selectedReport.image_url" cols="12">
                 <div class="mb-4">
-                  <div class="text-caption text-medium-emphasis mb-2">
+                  <div class="text-caption text-medium-emphasis mb-2 joss">
                     Attached Image
                   </div>
                   <v-img
@@ -410,20 +422,20 @@ onMounted(() => {
         <v-card>
           <v-card-title class="bg-error">
             <v-icon icon="mdi-alert" class="mr-2" />
-            Confirm Delete
+            <span class="outfit-title">Confirm Delete</span>
           </v-card-title>
 
           <v-card-text class="pt-6">
-            <p class="text-body-1">
+            <p class="text-body-1 joss">
               Are you sure you want to delete this report?
             </p>
             <p
               v-if="selectedReport"
-              class="text-body-2 text-medium-emphasis mt-2"
+              class="text-body-2 text-medium-emphasis mt-2 joss"
             >
               <strong>Title:</strong> {{ selectedReport.title }}
             </p>
-            <p class="text-body-2 text-error mt-4">
+            <p class="text-body-2 text-error mt-4 joss">
               This action cannot be undone.
             </p>
           </v-card-text>
@@ -449,6 +461,21 @@ onMounted(() => {
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
+
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 .v-card-title {
   color: white;
 }
