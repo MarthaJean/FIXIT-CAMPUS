@@ -50,10 +50,10 @@
     "navbar": {
       "title": "FixIt Campus",
       "logo": {
-        "src": "/src/assets/logo.png",
+        "src": "/images/logo.png",
         "alt": "FixIt Campus Logo",
         "width": 70,
-        "height": 80  
+        "height": 80
       },
       "color": "primary",
       "elevation": 2,
