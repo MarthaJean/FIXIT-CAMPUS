@@ -7,13 +7,13 @@
 
     <v-form ref="formRef" v-model="formValid" @submit.prevent="handleLogin">
       <v-container class="pa-0">
-        <!-- Username/Email Field -->
+        <!-- Email Field -->
         <v-row no-gutters class="mb-3">
           <v-col cols="12">
-            <label class="field-label">Username</label>
+            <label class="field-label">Email</label>
             <v-text-field
               v-model="loginForm.email"
-              placeholder="Enter your username or email"
+              placeholder="Enter your email"
               type="email"
               variant="outlined"
               density="comfortable"
