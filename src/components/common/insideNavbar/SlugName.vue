@@ -33,6 +33,7 @@ async function handleLogout() {
       location="bottom end"
       offset="8"
       transition="slide-y-transition"
+      :z-index="9999"
     >
       <template #activator="{ props }">
         <div v-bind="props" class="user-avatar-container">
