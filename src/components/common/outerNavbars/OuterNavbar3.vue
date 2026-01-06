@@ -167,9 +167,9 @@ function scrollToSection(sectionId: string) {
             content="V3"
             color="success"
             dot
-            offset-x="8"
-            offset-y="8"
-            class="me-2"
+            offset-x="6"
+            offset-y="6"
+            class="me-3"
           >
             <!-- Logo Image with Icon Fallback -->
             <template v-if="navbarConfig.logo?.src">
