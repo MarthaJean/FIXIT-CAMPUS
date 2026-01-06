@@ -115,7 +115,6 @@ const handleLogout = async () => {
         :key="group.title"
         class="navigation-group-section"
       >
-
         <!-- Collapsible Children -->
         <v-expand-transition>
           <div
@@ -162,6 +161,10 @@ const handleLogout = async () => {
 </template>
 
 <style scoped>
+/* Font imports */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
+
 .v-navigation-drawer {
   z-index: 1000 !important;
 }
@@ -220,10 +223,6 @@ const handleLogout = async () => {
   border-radius: 8px;
   padding: 4px 0;
 }
-
-/* Font imports */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
 
 /* Font classes */
 .outfit-title {

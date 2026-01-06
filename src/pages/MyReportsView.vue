@@ -581,6 +581,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/* Font imports */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
+
 .report-card {
   transition: transform 0.2s;
 }
@@ -596,10 +600,6 @@ onMounted(() => {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* Font imports */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap");
 
 /* Font classes */
 .outfit-title {
