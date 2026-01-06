@@ -73,7 +73,7 @@
         }
       ],
       "ctaButton": {
-        "label": "Get Started",
+        "label": "Sign In",
         "variant": "outlined",
         "color": "on-primary",
         "action": "navigate",
