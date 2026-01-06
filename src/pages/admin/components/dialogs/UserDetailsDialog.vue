@@ -98,3 +98,17 @@ const closeDialog = () => {
     </v-card>
   </v-dialog>
 </template>
+
+<style scoped>
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+</style>

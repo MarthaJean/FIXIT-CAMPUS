@@ -3,7 +3,10 @@ import { ref, computed, watch } from "vue";
 import { useDisplay } from "vuetify";
 import { useRouter, useRoute } from "vue-router";
 import { useAuthUserStore } from "@/stores/authUser";
-import { navigationConfig } from "@/utils/navigation";
+import {
+  adminNavigationConfig,
+  studentNavigationConfig,
+} from "@/utils/navigation";
 
 // Vuetify display composable for responsive design
 const { smAndDown } = useDisplay();
@@ -47,8 +50,10 @@ watch(
 // Hide sidebar on small screens
 const showSidebar = computed(() => !smAndDown.value);
 
-// Get navigation groups from shared config
-const navigationGroups = computed(() => navigationConfig);
+// Get navigation groups based on user role
+const navigationGroups = computed(() => {
+  return authStore.isAdmin ? adminNavigationConfig : studentNavigationConfig;
+});
 
 // Helper function to get group expansion state
 const getGroupExpansion = (groupTitle: string) => {
@@ -110,25 +115,6 @@ const handleLogout = async () => {
         :key="group.title"
         class="navigation-group-section"
       >
-        <!-- Group Header -->
-        <v-list-item
-          @click="
-            getGroupExpansion(group.title).value = !getGroupExpansion(
-              group.title
-            ).value
-          "
-          class="mb-1 rounded-lg group-header"
-          :prepend-icon="group.icon"
-          :append-icon="
-            getGroupExpansion(group.title).value
-              ? 'mdi-chevron-up'
-              : 'mdi-chevron-down'
-          "
-        >
-          <v-list-item-title class="font-weight-medium">
-            {{ group.title }}
-          </v-list-item-title>
-        </v-list-item>
 
         <!-- Collapsible Children -->
         <v-expand-transition>

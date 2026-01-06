@@ -146,7 +146,7 @@ onMounted(() => {
                   <v-icon
                     icon="mdi-file-document-multiple"
                     size="40"
-                    color="primary"
+                    color="#FF5BAE"
                     class="mr-3"
                   />
                   <div>
@@ -359,7 +359,7 @@ onMounted(() => {
                   <div class="text-caption text-medium-emphasis mb-1 joss">
                     Classroom ID
                   </div>
-                  <v-chip color="primary" size="small">{{
+                  <v-chip color="#000" size="small">{{
                     selectedReport.classroom_id
                   }}</v-chip>
                 </div>
@@ -405,7 +405,7 @@ onMounted(() => {
 
           <v-card-actions class="px-6 pb-4">
             <v-spacer />
-            <v-btn color="primary" variant="text" @click="closeDialogs"
+            <v-btn color="#000" variant="text" @click="closeDialogs"
               >Close</v-btn
             >
           </v-card-actions>
