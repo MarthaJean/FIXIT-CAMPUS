@@ -167,9 +167,9 @@ function scrollToSection(sectionId: string) {
             content="V3"
             color="success"
             dot
-            offset-x="8"
-            offset-y="8"
-            class="me-2"
+            offset-x="6"
+            offset-y="6"
+            class="me-3"
           >
             <!-- Logo Image with Icon Fallback -->
             <template v-if="navbarConfig.logo?.src">
@@ -279,7 +279,7 @@ function scrollToSection(sectionId: string) {
             size="large"
             rounded="pill"
             class="px-6"
-            prepend-icon="mdi-rocket-launch-outline"
+            prepend-icon="mdi-account-circle-outline"
             @click="handleCTAAction(navbarConfig.ctaButton)"
           >
             {{ navbarConfig.ctaButton.label }}
@@ -287,14 +287,30 @@ function scrollToSection(sectionId: string) {
           </v-btn>
         </div>
 
-        <!-- Mobile Menu Button -->
-        <v-btn
-          v-if="!lgAndUp"
-          icon="mdi-menu"
-          variant="text"
-          :size="xs ? 'default' : 'large'"
-          @click="drawer = !drawer"
-        />
+        <!-- Mobile Actions: CTA Button + Menu Button -->
+        <div v-if="!lgAndUp" class="d-flex align-center gap-2">
+          <!-- CTA Button - Always visible on mobile -->
+          <v-btn
+            v-if="navbarConfig.ctaButton"
+            :color="navbarConfig.ctaButton.color"
+            variant="elevated"
+            :size="xs ? 'small' : 'default'"
+            rounded="pill"
+            class="text-none px-3"
+            @click="handleCTAAction(navbarConfig.ctaButton)"
+          >
+            <span class="d-none d-sm-inline">{{ navbarConfig.ctaButton.label }}</span>
+            <v-icon :class="{ 'd-sm-none': true }" icon="mdi-account-circle-outline" />
+          </v-btn>
+
+          <!-- Menu Button -->
+          <v-btn
+            icon="mdi-menu"
+            variant="text"
+            :size="xs ? 'default' : 'large'"
+            @click="drawer = !drawer"
+          />
+        </div>
       </template>
     </v-app-bar>
 
@@ -430,9 +446,9 @@ function scrollToSection(sectionId: string) {
         </v-list-group>
       </v-list>
 
-      <!-- CTA Button at Bottom -->
+      <!-- CTA Button at Bottom - Only show if not visible in navbar -->
       <template #append>
-        <v-card flat class="pa-4">
+        <v-card flat class="pa-4" v-if="lgAndUp">
           <v-btn
             v-if="navbarConfig.ctaButton"
             :color="navbarConfig.ctaButton.color"

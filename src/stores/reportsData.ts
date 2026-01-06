@@ -10,6 +10,7 @@ export interface Report {
   classroom_id: number;
   user_id: string;
   image_url?: string;
+  status?: "Pending" | "In Progress" | "Resolved" | "Rejected";
 }
 
 export interface CreateReportPayload {
@@ -18,6 +19,7 @@ export interface CreateReportPayload {
   classroom_id: number;
   user_id?: string;
   image_url?: string;
+  status?: "Pending" | "In Progress" | "Resolved" | "Rejected";
 }
 
 export interface UpdateReportPayload {
@@ -25,6 +27,7 @@ export interface UpdateReportPayload {
   description?: string;
   classroom_id?: number;
   image_url?: string;
+  status?: "Pending" | "In Progress" | "Resolved" | "Rejected";
 }
 
 export const useReportsStore = defineStore("reports", () => {

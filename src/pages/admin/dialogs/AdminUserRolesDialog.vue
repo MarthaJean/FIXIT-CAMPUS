@@ -134,7 +134,7 @@ const handleDelete = () => {
     @update:model-value="!$event && closeDialog()"
   >
     <v-card>
-      <v-card-title class="text-h5 pa-6 pb-4">
+      <v-card-title class="text-h5 pa-6 pb-4 outfit-title">
         {{ isEditing ? "Edit Role" : "Create New Role" }}
       </v-card-title>
 
@@ -142,7 +142,7 @@ const handleDelete = () => {
         <v-row>
           <!-- Role Information Column -->
           <v-col cols="12" md="6">
-            <h3 class="text-h6 mb-4">Role Information</h3>
+            <h3 class="text-h6 mb-4 outfit-title">Role Information</h3>
             <v-form @submit.prevent="handleSubmit">
               <v-text-field
                 v-model="localFormData.title"
@@ -157,7 +157,7 @@ const handleDelete = () => {
 
           <!-- Page Access Control Column -->
           <v-col cols="12" md="6">
-            <h3 class="text-h6 mb-4">Page Access Control</h3>
+            <h3 class="text-h6 mb-4 outfit-title">Page Access Control</h3>
             <div class="page-control-container">
               <!-- Loading state for permissions -->
               <div v-if="permissionsLoading" class="text-center py-6">
@@ -166,7 +166,7 @@ const handleDelete = () => {
                   alt="Loading..."
                   style="width: 150px; height: auto"
                 />
-                <p class="text-body-2 mt-2">Loading role permissions...</p>
+                <p class="text-body-2 mt-2 joss">Loading role permissions...</p>
               </div>
 
               <!-- Dynamic Navigation Groups -->
@@ -192,7 +192,9 @@ const handleDelete = () => {
                   "
                   density="compact"
                 >
-                  <v-list-item-title class="font-weight-medium text-body-2">
+                  <v-list-item-title
+                    class="font-weight-medium text-body-2 outfit-title"
+                  >
                     {{ group.title }}
                   </v-list-item-title>
                 </v-list-item>
@@ -220,11 +222,11 @@ const handleDelete = () => {
                         />
                         <v-icon :icon="child.icon" size="20" class="mr-2" />
                       </template>
-                      <v-list-item-title class="text-body-2">
+                      <v-list-item-title class="text-body-2 joss">
                         {{ child.title }}
                       </v-list-item-title>
                       <v-list-item-subtitle
-                        class="text-caption"
+                        class="text-caption joss"
                         v-if="child.route"
                       >
                         {{ child.route }}
@@ -263,10 +265,12 @@ const handleDelete = () => {
     @update:model-value="!$event && closeDialog()"
   >
     <v-card>
-      <v-card-title class="text-h5 pa-6 pb-4"> Confirm Delete </v-card-title>
+      <v-card-title class="text-h5 pa-6 pb-4 outfit-title">
+        Confirm Delete
+      </v-card-title>
 
       <v-card-text class="pa-6 pt-0">
-        <p class="text-body-1 mb-4">
+        <p class="text-body-1 mb-4 joss">
           Are you sure you want to delete the role
           <strong>"{{ selectedRole?.title }}"</strong>?
         </p>
@@ -339,5 +343,17 @@ const handleDelete = () => {
 
 .v-checkbox {
   flex: 0 0 auto;
+}
+
+.outfit-title {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.joss {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 </style>

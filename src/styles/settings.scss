@@ -15,3 +15,42 @@
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+// Smooth Scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Global Transitions
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Override for elements that shouldn't transition
+*:not(.v-btn):not(.v-card):not(.v-list-item):not(.v-chip):not(.v-avatar):not(
+    .v-badge
+  ) {
+  transition-property: opacity, transform, color, background-color, border-color,
+    box-shadow;
+}
+
+// Smooth scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}

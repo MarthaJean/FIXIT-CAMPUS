@@ -37,6 +37,7 @@ export const useAuthUserStore = defineStore("authUser", () => {
       userData.value?.user_metadata?.full_name || userData.value?.email || null
   );
   const userRole = computed(() => userData.value?.user_metadata?.role || null);
+  const isAdmin = computed(() => userData.value?.user_metadata?.role === 2);
 
   async function registerUser(
     email: string,
@@ -376,6 +377,7 @@ export const useAuthUserStore = defineStore("authUser", () => {
     userEmail,
     userName,
     userRole,
+    isAdmin,
 
     // Actions
     registerUser,

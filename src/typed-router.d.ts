@@ -30,8 +30,11 @@ declare module 'vue-router/auto-routes' {
     '/ForbiddenView': RouteRecordInfo<'/ForbiddenView', '/ForbiddenView', Record<never, never>, Record<never, never>>,
     '/home/HomeWidget': RouteRecordInfo<'/home/HomeWidget', '/home/HomeWidget', Record<never, never>, Record<never, never>>,
     '/HomeView': RouteRecordInfo<'/HomeView', '/HomeView', Record<never, never>, Record<never, never>>,
+    '/MyReportsView': RouteRecordInfo<'/MyReportsView', '/MyReportsView', Record<never, never>, Record<never, never>>,
     '/NotFound': RouteRecordInfo<'/NotFound', '/NotFound', Record<never, never>, Record<never, never>>,
     '/otherTab/Page1View': RouteRecordInfo<'/otherTab/Page1View', '/otherTab/Page1View', Record<never, never>, Record<never, never>>,
+    '/ProfileSettingsView': RouteRecordInfo<'/ProfileSettingsView', '/ProfileSettingsView', Record<never, never>, Record<never, never>>,
+    '/ReportIssueView': RouteRecordInfo<'/ReportIssueView', '/ReportIssueView', Record<never, never>, Record<never, never>>,
     '/ReportManagementView': RouteRecordInfo<'/ReportManagementView', '/ReportManagementView', Record<never, never>, Record<never, never>>,
   }
 }

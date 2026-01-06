@@ -9,6 +9,9 @@ import ForbiddenView from "@/pages/ForbiddenView.vue";
 import AdminUserRolesView from "@/pages/admin/AdminUserRolesView.vue";
 import UserManagementView from "@/pages/admin/UserManagementView.vue";
 import ReportManagementView from "@/pages/ReportManagementView.vue";
+import MyReportsView from "@/pages/MyReportsView.vue";
+import ReportIssueView from "@/pages/ReportIssueView.vue";
+import ProfileSettingsView from "@/pages/ProfileSettingsView.vue";
 
 /**
  * Route definitions for the application
@@ -29,18 +32,33 @@ const routes = setupLayouts([
     meta: { requiresAuth: true },
   },
   {
+    path: "/account/profile-settings",
+    component: ProfileSettingsView,
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/admin/user-roles",
     component: AdminUserRolesView,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, requiresAdmin: true },
   },
   {
     path: "/admin/user-management",
     component: UserManagementView,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, requiresAdmin: true },
   },
   {
     path: "/admin/report-management",
     component: ReportManagementView,
+    meta: { requiresAuth: true, requiresAdmin: true },
+  },
+  {
+    path: "/student/my-reports",
+    component: MyReportsView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/student/report-issue",
+    component: ReportIssueView,
     meta: { requiresAuth: true },
   },
   {

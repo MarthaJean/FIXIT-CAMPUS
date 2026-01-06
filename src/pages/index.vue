@@ -176,7 +176,6 @@ function formatDate(dateString: string) {
               <v-row align="center" justify="center">
                 <v-col cols="10" lg="10" md="9">
                   <div class="about-card">
-
                     <v-row align="center" class="about-content">
                       <v-col cols="10" md="7">
                         <div class="about-info">
@@ -535,7 +534,6 @@ function formatDate(dateString: string) {
 }
 
 .section-tagline {
-  color: #000000;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -545,13 +543,11 @@ function formatDate(dateString: string) {
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
-  color: #000000;
   line-height: 1.2;
 }
 
 .section-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #000000;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -611,8 +607,8 @@ function formatDate(dateString: string) {
 
 .feature-title {
   font-size: 1.5rem;
-  font-weight: 700;
   color: #000000;
+  font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
   position: relative;
@@ -647,6 +643,7 @@ function formatDate(dateString: string) {
 
 .about-content {
   position: relative;
+  color: #000000;
   z-index: 1;
 }
 
@@ -666,7 +663,6 @@ function formatDate(dateString: string) {
 .info-badge {
   display: inline-block;
   background: rgba(227, 127, 157, 0.15);
-  color: #000;
   padding: 0.4rem 1rem;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -679,13 +675,11 @@ function formatDate(dateString: string) {
 .info-value {
   font-size: 2rem;
   font-weight: 700;
-  color: #000000;
   margin: 0;
 }
 
 .info-text {
   font-size: 1.125rem;
-  color: #000000;
   margin: 0;
 }
 
